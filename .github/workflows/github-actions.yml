@@ -2,8 +2,13 @@ name: GitHub Actions
 run-name: Build and Test 🚀
 on: [push]
 jobs:
-  Explore-GitHub-Actions:
+  Build-and-Test:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: read
+      checks: write
+      pull-requests: write
     steps:
       - uses: actions/checkout@v3
       - name: Set up JDK 17
