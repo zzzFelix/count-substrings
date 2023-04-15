@@ -1,4 +1,10 @@
-class TopN {
+class CountSubstrings {
+    fun printAll(text: String): Map<String, Int> {
+        val map = createMapFromString(text)
+        println(map)
+        return map
+    }
+
     fun topN(map: Map<String, Int>, n: Int): Map<String, Int> {
         val sortedMap = sortByKeyAndValue(map)
 
@@ -10,6 +16,17 @@ class TopN {
 
         println(reducedMap)
         return reducedMap
+    }
+
+    private fun createMapFromString(text: String): Map<String, Int> {
+        val map: HashMap<String, Int> = hashMapOf()
+
+        text.split(" ").filter { it.isNotBlank() }.forEach {
+            val oldValue = map.getOrDefault(it, 0)
+            map[it] = oldValue + 1
+        }
+
+        return map
     }
 
     private fun sortByKeyAndValue(map: Map<String, Int>): Map<String, Int> {
