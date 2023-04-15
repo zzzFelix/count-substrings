@@ -14,6 +14,7 @@ class CountSubstrings {
         val sortedMap = sortByKeyAndValue(map)
 
         val reducedMap = hashMapOf<String, Int>()
+
         for (key in sortedMap.keys) {
             if (reducedMap.size == n) break
             reducedMap[key] = sortedMap[key]!!
