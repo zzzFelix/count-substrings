@@ -1,9 +1,26 @@
+import org.junit.jupiter.api.AfterEach
+import org.junit.jupiter.api.BeforeEach
+import java.io.ByteArrayOutputStream
+import java.io.PrintStream
 import kotlin.test.Test
 import kotlin.test.assertEquals
+
 
 internal class CountSubstringsTest {
 
     private val countSubstrings: CountSubstrings = CountSubstrings()
+    private val standardOut = System.out
+    private val outputStreamCaptor = ByteArrayOutputStream()
+
+    @BeforeEach
+    fun setUp() {
+        System.setOut(PrintStream(outputStreamCaptor))
+    }
+
+    @AfterEach
+    fun tearDown() {
+        System.setOut(standardOut)
+    }
 
     @Test
     fun `should create map from string`() {
@@ -123,5 +140,18 @@ internal class CountSubstringsTest {
             Pair("is", 2)
         )
         assertEquals(expected, actual)
+    }
+
+    @Test
+    fun `should print elements in correct order`() {
+        val text = "penguin giraffe lion penguin cat penguin dog cat dog lion"
+
+        val map = countSubstrings.createMapFromString(text)
+        println(map)
+        val topN = countSubstrings.topN(map, 3)
+        println(topN)
+
+        assertEquals("{giraffe=1, cat=2, dog=2, penguin=3, lion=2}\n" +
+                "{penguin=3, cat=2, dog=2}", outputStreamCaptor.toString().trim())
     }
 }

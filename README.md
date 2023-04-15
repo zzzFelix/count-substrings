@@ -15,3 +15,6 @@ This repository contains two methods:
 
 ### Time Complexity and Space Complexity
 - O(n*logn + m) time, O(n) space, where n is the number of substrings (words), m the length of the input string.
+
+### Run
+`./gradlew run --args='penguin giraffe lion cat penguin penguin lion dog cat dog`

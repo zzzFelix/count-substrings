@@ -1,3 +1,5 @@
+import java.util.SortedMap
+
 class CountSubstrings {
     fun createMapFromString(input: String): Map<String, Int> {
         val delimiter = ' '
@@ -14,7 +16,7 @@ class CountSubstrings {
     fun topN(map: Map<String, Int>, n: Int): Map<String, Int> {
         val sortedMap = sortByKeyAndValue(map)
 
-        val reducedMap = hashMapOf<String, Int>()
+        val reducedMap = mutableMapOf<String, Int>()
 
         for (key in sortedMap.keys) {
             if (reducedMap.size == n) break
@@ -30,7 +32,7 @@ class CountSubstrings {
     }
 
     private fun sortByKeyAscending(map: Map<String, Int>): Map<String, Int> {
-        return map.toList().sortedBy { it.first }.toMap()
+        return map.toSortedMap()
     }
 
     private fun sortByValueDescending(map: Map<String, Int>): Map<String, Int> {
