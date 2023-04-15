@@ -1,5 +1,3 @@
-import java.util.SortedMap
-
 class CountSubstrings {
     fun createMapFromString(input: String): Map<String, Int> {
         val delimiter = ' '
