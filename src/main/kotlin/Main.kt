@@ -8,8 +8,10 @@ fun main(args: Array<String>) {
     val text = "this is a tes test this is x x x cheese"
 
     // 1
-    val map = countSubstrings.printAll(text)
+    val map = countSubstrings.createMapFromString(text)
+    println(map)
 
     // 2
-    countSubstrings.topN(map, 3)
+    val topN = countSubstrings.topN(map, 3)
+    println(topN)
 }

@@ -1,7 +1,12 @@
 class CountSubstrings {
-    fun printAll(text: String): Map<String, Int> {
-        val map = createMapFromString(text)
-        println(map)
+    fun createMapFromString(text: String): Map<String, Int> {
+        val map: HashMap<String, Int> = hashMapOf()
+
+        text.split(" ").filter { it.isNotBlank() }.forEach {
+            val oldValue = map.getOrDefault(it, 0)
+            map[it] = oldValue + 1
+        }
+
         return map
     }
 
@@ -14,19 +19,7 @@ class CountSubstrings {
             reducedMap[key] = sortedMap[key]!!
         }
 
-        println(reducedMap)
         return reducedMap
-    }
-
-    private fun createMapFromString(text: String): Map<String, Int> {
-        val map: HashMap<String, Int> = hashMapOf()
-
-        text.split(" ").filter { it.isNotBlank() }.forEach {
-            val oldValue = map.getOrDefault(it, 0)
-            map[it] = oldValue + 1
-        }
-
-        return map
     }
 
     private fun sortByKeyAndValue(map: Map<String, Int>): Map<String, Int> {
