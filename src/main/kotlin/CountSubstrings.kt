@@ -1,8 +1,9 @@
 class CountSubstrings {
-    fun createMapFromString(text: String): Map<String, Int> {
+    fun createMapFromString(input: String): Map<String, Int> {
+        val delimiter = ' '
         val map: HashMap<String, Int> = hashMapOf()
 
-        text.split(" ").filter { it.isNotBlank() }.forEach {
+        input.split(delimiter).filter { it.isNotBlank() }.forEach {
             val oldValue = map.getOrDefault(it, 0)
             map[it] = oldValue + 1
         }

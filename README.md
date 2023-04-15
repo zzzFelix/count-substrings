@@ -13,3 +13,5 @@ This repository contains two methods:
 - Input: Map with substrings and the number of their occurrences; value _n_ to determine the desired key-value pairs in the output.
 - Output: The _n_ key-value pairs with the highest values from the input map. When multiple key-value pairs have the same value, they are sorted alphabetically.
 
+### Time Complexity and Space Complexity
+- O(n*logn + m) time, O(n + k) space, where n is the number of substrings (words), m the length of the input string, and k the length of the longest substring.
