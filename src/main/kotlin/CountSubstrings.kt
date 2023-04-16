@@ -18,7 +18,7 @@ class CountSubstrings {
 
         for (key in sortedMap.keys) {
             if (reducedMap.size == n) break
-            reducedMap[key] = sortedMap[key]!!
+            reducedMap[key] = sortedMap.getOrDefault(key, 0)
         }
 
         return reducedMap
