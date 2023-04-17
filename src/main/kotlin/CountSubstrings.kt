@@ -3,9 +3,23 @@ class CountSubstrings {
         val delimiter = ' '
         val map: HashMap<String, Int> = hashMapOf()
 
-        input.split(delimiter).filter { it.isNotBlank() }.forEach {
-            val oldValue = map.getOrDefault(it, 0)
-            map[it] = oldValue + 1
+        var currentWord = ""
+        for (index in input.indices) {
+            val char = input[index]
+            val isCharDelimiter = char == delimiter
+
+            if (isCharDelimiter && currentWord.isNotBlank()) {
+                val currentValue = map.getOrDefault(currentWord, 0)
+                map[currentWord] = currentValue + 1
+                currentWord = ""
+            } else if (!isCharDelimiter) {
+                currentWord += char
+            }
+        }
+
+        if (currentWord.isNotBlank()) {
+            val currentValue = map.getOrDefault(currentWord, 0)
+            map[currentWord] = currentValue + 1
         }
 
         return map
@@ -34,6 +48,27 @@ class CountSubstrings {
     }
 
     private fun sortByValueDescending(map: Map<String, Int>): Map<String, Int> {
-        return map.toList().sortedByDescending { it.second }.toMap()
+        if (map.size < 2){
+            return map
+        }
+
+        val items = map.toList()
+        val pivot = items[items.count()/2].second
+        val equal = arrayListOf<Pair<String, Int>>()
+        val less = arrayListOf<Pair<String, Int>>()
+        val greater = arrayListOf<Pair<String, Int>>()
+
+        for (i in items.indices) {
+            val item = items[i]
+            if (item.second == pivot) {
+                equal.add(item)
+            } else if (item.second < pivot) {
+                less.add(item)
+            } else {
+                greater.add(item)
+            }
+        }
+
+        return sortByValueDescending(greater.toMap()) + equal + sortByValueDescending(less.toMap())
     }
 }

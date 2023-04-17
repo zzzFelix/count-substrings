@@ -123,7 +123,7 @@ internal class CountSubstringsTest {
     }
 
     @Test
-    fun `should order alphabetically when more than n keys have same weight`() {
+    fun `should order alphabetically when more than 2 keys have same weight`() {
         val given = mapOf(
             Pair("z", 2),
             Pair("is", 2),
