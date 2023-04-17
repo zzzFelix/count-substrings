@@ -16,5 +16,11 @@ This repository contains two methods:
 ### Time Complexity and Space Complexity
 - O(n*logn + m) time, O(n) space, where n is the number of substrings (words), m the length of the input string.
 
+### Fewer built-in functions
+I implemented these functions similar to how I would do it in production. That means, they use some of Kotlin's built-in functions.
+The following branch contains custom implementations of built-in functions like `quicksort`, `split`, `filter`, and `forEach`.
+
+https://github.com/zzzFelix/count-substrings/tree/feat/low-level
+
 ### Run
 `./gradlew run --args='penguin giraffe lion cat penguin penguin lion dog cat dog'`
